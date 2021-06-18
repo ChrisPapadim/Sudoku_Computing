@@ -1,3 +1,5 @@
+import Time from "./time.js"
+
 //Load Boards
 const easy = [
     "6------7------5-2------1---362----81--96-----71--9-4-5-2---651---78----345-------",
@@ -50,6 +52,7 @@ const easy = [
 
   function startGame() {
       //Choose board difficulty
+      let board;
       if (id("diff-1").checked) board = easy[0];
       else if (id("diff-2").checked) board = medium[0];
       else board = hard[0];
@@ -81,18 +84,11 @@ const easy = [
         timeRemaining --;
         //If no time remaining, end the game
         if (timeRemaining === 0) endGame();
-        id("timer").textContent = timeConversion(timeRemaining);
+        id("timer").textContent = Time.timeConversion(timeRemaining);
       }, 1000);
   }
 
-  //Converts seconds into string of MM:SS format
-  function timeConversion(time) {
-    let minutes = Math.floor(time /60);
-    if (minutes < 10) minutes = "0" + minutes;
-    let seconds = time % 60;
-    if (seconds < 10) seconds = "0" + seconds;
-    return minutes + ":" + seconds;
-  }
+ 
 
   function generateBoard(board) {
   //Clear previous boards
